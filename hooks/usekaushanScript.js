@@ -1,10 +1,10 @@
 import * as Font from 'expo-font';
 import { useEffect, useState } from 'react';
-const useKaushanScript=(location,fontType)=>{
+const useKaushanScript=()=>{
     const [fontsLoaded, setfont] = useState(null);
 
     let customFonts = {
-        'KaushanScript': require(`../assets/fonts/${location}/${fontType}`)
+        'KaushanScript': require(`../assets/fonts/KaushanScript/KaushanScript-Regular.ttf`)
     };
     async function loadFontsAsync() {
         await Font.loadAsync(customFonts);

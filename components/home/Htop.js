@@ -1,0 +1,70 @@
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { styles } from "../../Styles";
+import useKaushanScript from "../../hooks/usekaushanScript";
+import Tasty from "./Tasty";
+
+
+const Htop = () => {
+    const { fontsLoaded } = useKaushanScript();
+    if (!fontsLoaded) {
+        return null;
+    }
+    return (
+        <View style={styles.Htop}>
+            <View
+                style={{
+                    borderBottomLeftRadius: 22,
+                    borderBottomRightRadius: 22,
+                    flex:0.6,
+                    justifyContent:'flex-end',
+                    padding:6,
+                    backgroundColor: '#2C3135', flexDirection: "column",
+
+                }}>
+                <View style={{
+                    flexDirection: "row", justifyContent: "space-between",marginTop:50
+                }}>
+                    <Text style={{ fontFamily: 'KaushanScript', fontSize: 35,color:'white' }}>Rosted</Text>
+                    <TouchableOpacity>
+                        <View style={{
+                             flexDirection: "row",
+                              backgroundColor: "rgba(204,255,0,0.8)",
+                              borderRadius:5,
+                              alignItems:'center',
+                               padding: 3 }}>
+                            <Ionicons name="cart" size={26} color="black" />
+                            <Text>2</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: "center",marginBottom:5 }}>
+                    <TouchableOpacity>
+                    <Ionicons style={{backgroundColor:'white',borderRadius:5}} name="md-exit-outline" size={30} color="black" />
+                     
+                    </TouchableOpacity>
+                    <View style={styles.containerinput}>
+                        <Ionicons name="search-outline" size={24} color="black" />
+
+                        <TextInput
+
+                            style={{ marginLeft: 2, marginRight: 2,color:'white',fontFamily:'KaushanScript' }}
+                            numberOfLines={1}
+                            placeholder="search for something tasty..."
+                            keyboardType="default"
+                            cursorColor={"white"}
+                            placeholderTextColor={'white'}
+                        />
+                    </View>
+
+                </View>
+
+            </View>
+
+            <Tasty/>
+            
+        </View>
+    );
+}
+
+export default Htop;

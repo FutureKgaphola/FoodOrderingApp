@@ -29,6 +29,47 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10
+  },
+
+  //home styles
+  Homecontainer:{
+flex: 1,
+    justifyContent: 'center',
+    backgroundColor:'#EDEADE'
+  },
+  Htop:{
+    flex: 1,
+    borderBottomLeftRadius:22,
+    borderBottomRightRadius:22,
+    backgroundColor:'white'
+  },
+  Hcenter:{
+    flex: 10,
+    justifyContent: 'flex-start',
+    backgroundColor:'red'
+  },
+  Hbottom:{
+    flex: 1.5,
+    justifyContent: 'center',
+    backgroundColor:'green'
+    },
+  containerinput: {
+    flex:1,
+    flexDirection: "row",
+    borderWidth: 0,
+    borderRadius: 25,
+    elevation: 3,
+    backgroundColor:'#393939',
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: "#2C3135",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 6,
+    padding: 5,
+    margin: 5,
+    
+
   }
 
 });

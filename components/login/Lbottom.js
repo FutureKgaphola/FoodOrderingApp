@@ -32,7 +32,7 @@ const Lbottom = ({navigation}) => {
                 </View>
                 
                 <View style={{ backgroundColor: '#2C3135', borderRadius: 15, padding: 12, maxWidth: '100%' }}>
-                    <TouchableOpacity style={{ backgroundColor: "white", borderRadius: 80, margin: 5 }}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('Home')} style={{ backgroundColor: "white", borderRadius: 80, margin: 5 }}>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                             <FontAwesome5 style={{ marginLeft: 8 }} name="hamburger" size={28} color="black" />
                             <Text style={{ marginRight: 30, fontFamily: 'kanit', margin: 5, fontSize: 24, }}>Log in</Text>
