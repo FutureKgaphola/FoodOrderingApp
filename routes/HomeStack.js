@@ -3,7 +3,9 @@ import {createAppContainer} from 'react-navigation';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Welcome from '../screens/Welcome';
-import Header from '../shared/Header';
+import Preview from '../screens/Preview';
+import Cart from '../screens/Cart';
+import Receipts from '../screens/Receipts';
 
 const screens={
     Welcome:{
@@ -22,6 +24,42 @@ const screens={
     },
     Home:{
         screen: Home,
+        navigationOptions:{
+            title:'',
+            headerShown: false,
+            headerLeft: ()=> null,
+            headerStyle: {
+                backgroundColor: 'black',
+             }
+        }
+    },
+    Preview:{
+        screen:Preview,
+        title:'',
+        navigationOptions:{
+            title:'',
+            headerShown: false,
+            headerLeft: ()=> null,
+            headerStyle: {
+                backgroundColor: 'black',
+             }
+        }
+    },
+    Cart:{
+        screen:Cart,
+        title:'',
+        navigationOptions:{
+            title:'',
+            headerShown: false,
+            headerLeft: ()=> null,
+            headerStyle: {
+                backgroundColor: 'black',
+             }
+        }
+    },
+    Receipts:{
+        screen:Receipts,
+        title:'',
         navigationOptions:{
             title:'',
             headerShown: false,

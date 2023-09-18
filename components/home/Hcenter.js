@@ -4,7 +4,7 @@ import Chickencard from "./Chickencard";
 import { useState } from "react";
 import Friescard from "./Friescard";
 
-const Hcenter = () => {
+const Hcenter = ({navigation}) => {
     const [categories, setCategory] = useState('chicken');
     return (
         <View style={styles.Hcenter}>
@@ -25,7 +25,7 @@ const Hcenter = () => {
                     </TouchableOpacity>
                 </View>
 
-                {categories === "chicken" ? <Chickencard /> : <Friescard />}
+                {categories === "chicken" ? <Chickencard navigation={navigation} /> : <Friescard navigation={navigation}/>}
             </View>
         </View>
     );

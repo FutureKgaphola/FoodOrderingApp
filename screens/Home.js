@@ -4,15 +4,14 @@ import Htop from "../components/home/Htop";
 import Hcenter from "../components/home/Hcenter";
 import Hbottom from "../components/home/Hbottom";
 
-const Home = () => {
+const Home = ({navigation}) => {
     return (
         <View style={styles.Homecontainer}>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <Htop />
+            <Htop navigation={navigation}/>
            </TouchableWithoutFeedback>
-            <Hcenter />
-
-            <Hbottom/>
+            <Hcenter navigation={navigation}/>
+            <Hbottom msg={'checkout 2 products'} navigation={navigation}/>
         </View> 
         
     );

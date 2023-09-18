@@ -3,9 +3,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { styles } from "../../Styles";
 import useKaushanScript from "../../hooks/usekaushanScript";
 import Tasty from "./Tasty";
+import VisitCart from "../../shared/VisitCart";
 
 
-const Htop = () => {
+const Htop = ({navigation}) => {
     const { fontsLoaded } = useKaushanScript();
     if (!fontsLoaded) {
         return null;
@@ -27,18 +28,7 @@ const Htop = () => {
                     flexDirection: "row", justifyContent: "space-between", marginTop: 10
                 }}>
                     <Text style={{ fontFamily: 'KaushanScript', fontSize: 35, color: 'white' }}>Rosted</Text>
-                    <TouchableOpacity>
-                        <View style={{
-                            flexDirection: "row",
-                            backgroundColor: "rgba(204,255,0,0.8)",
-                            borderRadius: 5,
-                            alignItems: 'center',
-                            padding: 3
-                        }}>
-                            <Ionicons name="cart" size={26} color="black" />
-                            <Text>2</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <VisitCart navigation={navigation}/>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: "center", marginBottom: 5 }}>
                     <TouchableOpacity>
