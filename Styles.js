@@ -38,20 +38,19 @@ flex: 1,
     backgroundColor:'#EDEADE'
   },
   Htop:{
-    flex: 1,
+    flex: 0.7,
     borderBottomLeftRadius:22,
     borderBottomRightRadius:22,
-    backgroundColor:'white'
+    backgroundColor:'white',
   },
   Hcenter:{
-    flex: 10,
+    flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor:'red'
+    
   },
   Hbottom:{
-    flex: 1.5,
     justifyContent: 'center',
-    backgroundColor:'green'
+    alignItems:'center',
     },
   containerinput: {
     flex:1,
@@ -68,8 +67,7 @@ flex: 1,
     marginVertical: 6,
     padding: 5,
     margin: 5,
-    
-
+    marginLeft:8
   }
 
 });

@@ -1,13 +1,10 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../Styles";
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
-import useKanit from "../../hooks/useKanit";
+
 
 const Wbottom = ({navigation}) => {
-    const { fontsLoaded } = useKanit();
-    if (!fontsLoaded) {
-        return null;
-    }
+    
     return (
         <View style={styles.Wbottom}>
 

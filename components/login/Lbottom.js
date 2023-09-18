@@ -1,14 +1,9 @@
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../../Styles";
 import { FontAwesome5, MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
-import useKantumruyPro from "../../hooks/useKantumruyPro";
-
 
 const Lbottom = ({navigation}) => {
-    const { fontsLoaded } = useKantumruyPro('Kantumruy','KantumruyPro-Regular.ttf');
-    if (!fontsLoaded) {
-        return null;
-    }
+    
     return (
         <View style={styles.Wbottom}>
 {/**log in design here*/}

@@ -1,7 +1,6 @@
 import { Image, View } from "react-native";
 import { styles } from "../../Styles";
 
-
 const Wtop = () => {
     return ( 
         <View style={styles.Wtop}>

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     txt: {
         fontFamily: 'KaushanScript',
-        fontSize: 20,
+        fontSize: 18,
         padding: 3,
         letterSpacing: 3,
     },
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         flexWrap: "wrap",
         marginTop:8,
-        margin:5
+        margin:5,
+        elevation:5
     }
 })

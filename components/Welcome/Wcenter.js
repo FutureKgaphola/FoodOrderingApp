@@ -1,12 +1,9 @@
 import { Text, View } from "react-native";
 import { styles } from "../../Styles";
-import useKantumruyPro from "../../hooks/useKantumruyPro";
+
 
 const Wcenter = () => {
-    const { fontsLoaded } = useKantumruyPro();
-    if (!fontsLoaded) {
-        return null;
-    }
+    
     return (
         <View style={styles.Wcenter}>
             <View
