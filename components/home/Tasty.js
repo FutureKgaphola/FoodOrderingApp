@@ -1,16 +1,16 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const Tasty = () => {
+const Tasty = ({navigation}) => {
     return (
         <View style={styles.tastycontainer}>
             <View style={{ flex: 1,marginLeft:5 }}>
-                <Text style={styles.txt}>repeat last order</Text>
-                <Text style={{lineHeight: 2,fontWeight:'bold'}}>____________________________</Text>
-                <Text style={styles.txt}>history</Text>
+                 <Text onPress={()=>navigation.navigate('Receipts')} style={styles.txt}>history</Text>
                 <Text style={{lineHeight: 2,fontWeight:'bold'}}>____________________________</Text>
                 <View style={{flexDirection:'row'}}>
                 <TouchableOpacity style={styles.tastyshake}>
-                    <Text style={{ fontFamily: 'KaushanScript', color: 'white', fontSize:18,padding:2 }}>tasty shake</Text>
+                    <Image style={{width:115,height:35}}
+                        source={require('../../assets/Rosted.png')}
+                        />
                 </TouchableOpacity>
                 </View>
                 
@@ -44,14 +44,9 @@ const styles = StyleSheet.create({
         letterSpacing: 3,
     },
     tastyshake: {
-        backgroundColor: '#2C3135',
-        fontFamily: 'KaushanScript',
         paddingLeft: 6,
         paddingRight: 6,
-        borderRadius: 25,
-        flexWrap: "wrap",
         marginTop:8,
         margin:5,
-        elevation:5
     }
 })

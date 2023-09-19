@@ -31,7 +31,7 @@ const Htop = ({navigation}) => {
                     <VisitCart navigation={navigation}/>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: "center", marginBottom: 5 }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
                         <Ionicons style={{ backgroundColor: 'white', borderRadius: 5 }} name="md-exit-outline" size={30} color="black" />
 
                     </TouchableOpacity>
@@ -53,7 +53,7 @@ const Htop = ({navigation}) => {
 
             </View>
 
-            <Tasty />
+            <Tasty navigation={navigation}/>
 
 
         </View>

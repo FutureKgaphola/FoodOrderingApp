@@ -29,7 +29,9 @@
     "react-native-screens": "~3.22.0",
     "react-native-web": "~0.19.6",
     "react-navigation-stack": "^2.10.4",
-    "react-render-image": "^3.0.1"
+    "react-render-image": "^3.0.1",
+    "expo-print": "~12.4.2",
+    "expo-sharing": "~11.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

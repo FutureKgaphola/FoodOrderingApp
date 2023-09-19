@@ -39,7 +39,7 @@ const Lbottom = ({navigation}) => {
                     <TouchableOpacity onPress={()=>navigation.navigate('Welcome')} style={{ backgroundColor: "rgba(204,255,0,0.8)", borderRadius: 80, margin: 5 }}>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                             <MaterialCommunityIcons style={{ marginLeft: 8 }} name="compass" size={30} color="white" />
-                            <Text style={{ marginRight: 30, fontFamily: 'kanit', margin: 5, fontSize: 24, color: 'white' }}>Just Browse</Text>
+                            <Text style={{ marginRight: 30, fontFamily: 'kanit', margin: 5, fontSize: 24, color: 'white' }}>Register</Text>
                             <View>{/**/}</View>
                         </View>
 

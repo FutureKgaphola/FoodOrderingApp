@@ -17,16 +17,14 @@ const Cart = ({ navigation }) => {
         { foodurl: require('../assets/fries1.png'), id: 2, item_name: 'Tasty fries', description: 'lorems...' },
         { foodurl: require('../assets/plate2.png'), id: 3, item_name: 'Full chicken', description: 'lorems...' },
         { foodurl: require('../assets/plate3.png'), id: 4, item_name: 'Full chicken', description: 'lorems...' }
-    
         ]
     );
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
         <Header msgcaption={'max fee'} navigation={navigation}/>
-
         <CartItemsGenrator cartitems={cartitems}/>
-            <Hbottom msg={'accept and pay'} navigation={navigation}/>
+          <Hbottom msg={'accept and pay'} navigation={navigation}/>
       </View>
     </View>
   );

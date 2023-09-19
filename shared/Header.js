@@ -51,7 +51,7 @@ const Header = (props) => {
         }}
       >
         <View style={{ flexDirection: "row", gap: 5 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Ionicons
               style={{ backgroundColor: "white", borderRadius: 5 }}
               name="arrow-back"
@@ -59,7 +59,7 @@ const Header = (props) => {
               color="black"
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Ionicons
               style={{ backgroundColor: "white", borderRadius: 5 }}
               name="md-exit-outline"
