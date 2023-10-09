@@ -1,9 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Text,View, TouchableOpacity } from "react-native";
+import { LogBox } from 'react-native';
 
-const VisitCart = ({navigation}) => {
+const VisitCart = (props) => {
+  const {navigation,cartItems,SetCart}=props;
     return ( 
-        <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Cart',{
+          cart_Items: cartItems,
+          Set_Cart: SetCart,
+        })} >
               <View
                 style={{
                   flexDirection: "row",
@@ -14,7 +19,7 @@ const VisitCart = ({navigation}) => {
                 }}
               >
                 <Ionicons name="cart" size={26} color="black" />
-                <Text>2</Text>
+                <Text>{cartItems.length? cartItems.length :0}</Text>
               </View>
             </TouchableOpacity>
      );

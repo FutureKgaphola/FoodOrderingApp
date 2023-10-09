@@ -3,7 +3,8 @@ import { useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-elements";
 
-const Suggested = () => {
+const Suggested = (props) => {
+  const { otherParam,items } = props;
   const [food, setfood] = useState([
     {
       foodurl: require("../assets/fries1.png"),
@@ -64,7 +65,13 @@ const Suggested = () => {
           renderItem={({ item }) => (
             <View style={{ flexDirection: "row" }}>
               <Card elevation={7} containerStyle={{ borderRadius: 9 }}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={()=>otherParam(
+                  [
+                    ...items,{ foodurl: require('../assets/plate3.png'), id: 11, item_name: 'full chicken', description: 'lorems...' }
+                  ]
+        
+                )}>
                   <AntDesign
                     style={{ elevation: 5 }}
                     name="pluscircle"

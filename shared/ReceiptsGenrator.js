@@ -1,6 +1,6 @@
 import { FlatList, Text, View } from "react-native";
 import { Card } from "react-native-elements";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 

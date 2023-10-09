@@ -1,8 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
+
 import {
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import Hbottom from "../components/home/Hbottom";
@@ -10,7 +8,8 @@ import { useState } from "react";
 import CartItemsGenrator from "../shared/CartItemsGenrator";
 import Header from "../shared/Header";
 
-const Cart = ({ navigation }) => {
+const Cart = (props) => {
+  const {navigation,cart_Items,Set_Cart}=props;
     const[cartitems,SetCart]=useState(
         [
         { foodurl: require('../assets/fries2.png'), id: 1, item_name: 'Extra hot fries', description: 'lorems...' },
@@ -22,9 +21,9 @@ const Cart = ({ navigation }) => {
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
-        <Header msgcaption={'max fee'} navigation={navigation}/>
+        <Header navigation={navigation}/>
         <CartItemsGenrator cartitems={cartitems}/>
-          <Hbottom msg={'accept and pay'} navigation={navigation}/>
+          <Hbottom msg={'accept and pay '} navigation={navigation} cartItems={cartitems} SetCart={SetCart}/>
       </View>
     </View>
   );

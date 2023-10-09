@@ -4,7 +4,9 @@ import ReceiptsGenrator from "../shared/ReceiptsGenrator";
 import Hbottom from "../components/home/Hbottom";
 import { useState } from "react";
 
-const Receipts = ({ navigation }) => {
+const Receipts = (props) => {
+  const {navigation,cartItems,SetCart}=props;
+
   const [recepits, SetReceipts] = useState([
     {
       id: 1,
@@ -30,10 +32,10 @@ const Receipts = ({ navigation }) => {
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
-        <Header msgcaption={"status"} navigation={navigation} />
+        <Header navigation={navigation} />
 
         <ReceiptsGenrator recepits={recepits} />
-        <Hbottom msg={"back to meals"} navigation={navigation} />
+        <Hbottom msg={"back to meals"} navigation={navigation} cartItems={cartItems} SetCart={SetCart}/>
       </View>
     </View>
   );

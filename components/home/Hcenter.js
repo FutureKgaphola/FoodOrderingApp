@@ -4,7 +4,8 @@ import Chickencard from "./Chickencard";
 import { useState } from "react";
 import Friescard from "./Friescard";
 
-const Hcenter = ({navigation}) => {
+const Hcenter = (props) => {
+    const{navigation,SetCart,cartItems}=props;
     const [categories, setCategory] = useState('chicken');
     return (
         <View style={styles.Hcenter}>
@@ -17,15 +18,19 @@ const Hcenter = ({navigation}) => {
                         </View>
 
                     </TouchableOpacity>
+
+                    {/*
                     <TouchableOpacity onPress={() => setCategory('fries')} style={styles.btn}>
                         <View style={local.btn}>
                             <Text style={{ fontFamily: 'KaushanScript', color: 'black', fontSize: 20, padding: 1 }}>🍟 fries </Text>
                         </View>
 
                     </TouchableOpacity>
+                    */}
                 </View>
 
-                {categories === "chicken" ? <Chickencard navigation={navigation} /> : <Friescard navigation={navigation}/>}
+                {/*categories === "chicken" ? <Chickencard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/> : <Friescard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/>*/}
+                <Chickencard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/> 
             </View>
         </View>
     );

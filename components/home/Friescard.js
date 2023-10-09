@@ -2,7 +2,8 @@ import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 import { useState } from "react";
-const Friescard = ({navigation}) => {
+const Friescard = (props) => {
+    const{navigation,SetCart,cartItems}=props;
     const [food, setfood] = useState([
         { foodurl: require('../../assets/fries1.png'), id: 1, item_name: 'full chicken', description: 'lorems...' },
         { foodurl: require('../../assets/fries2.png'), id: 2, item_name: 'full chicken', description: 'lorems...' },
@@ -30,7 +31,9 @@ const Friescard = ({navigation}) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Card elevation={7}
                             containerStyle={{ borderRadius: 9 }}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={()=>SetCart(
+                                    [...cartItems,item]
+                                )}>
                                 <AntDesign style={{ elevation: 5 }} name="pluscircle" size={24} color="black" />
                                 </TouchableOpacity>
                             <TouchableOpacity onPress={()=>navigation.navigate('Preview')}>

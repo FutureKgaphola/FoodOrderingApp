@@ -1,16 +1,13 @@
-import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from "../../Styles";
-import useKaushanScript from "../../hooks/usekaushanScript";
 import Tasty from "./Tasty";
 import VisitCart from "../../shared/VisitCart";
 
 
-const Htop = ({navigation}) => {
-    const { fontsLoaded } = useKaushanScript();
-    if (!fontsLoaded) {
-        return null;
-    }
+const Htop = (props) => {
+    const{navigation,cartItems,SetCart}=props;
+    
     return (
         <View style={styles.Htop}>
 
@@ -28,14 +25,16 @@ const Htop = ({navigation}) => {
                     flexDirection: "row", justifyContent: "space-between", marginTop: 10
                 }}>
                     <Text style={{ fontFamily: 'KaushanScript', fontSize: 35, color: 'white' }}>Rosted</Text>
-                    <VisitCart navigation={navigation}/>
+                    <VisitCart navigation={navigation} cartItems={cartItems} SetCart={SetCart}/>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: "center", marginBottom: 5 }}>
                     <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
                         <Ionicons style={{ backgroundColor: 'white', borderRadius: 5 }} name="md-exit-outline" size={30} color="black" />
 
                     </TouchableOpacity>
-                    <View style={styles.containerinput}>
+                    
+                    {/*
+                        <View style={styles.containerinput}>
                         <Ionicons name="search-outline" size={24} color="black" />
 
                         <TextInput
@@ -48,12 +47,13 @@ const Htop = ({navigation}) => {
                             placeholderTextColor={'white'}
                         />
                     </View>
+            */}
 
                 </View>
 
             </View>
 
-            <Tasty navigation={navigation}/>
+            <Tasty navigation={navigation}/> 
 
 
         </View>

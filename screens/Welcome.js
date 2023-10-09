@@ -14,8 +14,6 @@ const Welcome = ({navigation}) => {
                     <Wtop/>
                     <Wcenter/>
                     <Wbottom navigation={navigation}/>
-                {/*<Text style={{ fontFamily: 'KaushanScript', fontSize: 60, color: 'white' }}>Rosted</Text>
-                */}
             </ImageBackground>
         </View>
     );

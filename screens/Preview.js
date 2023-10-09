@@ -13,11 +13,12 @@ import Suggested from "../shared/Suggested";
 import Hbottom from "../components/home/Hbottom";
 import Header from "../shared/Header";
 
-const Preview = ({ navigation }) => {
+const Preview = ({ route, navigation }) => {
+  const { otherParam,items } = route.params;
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
-      <Header msgcaption={'item fee: '} navigation={navigation} />
+      <Header navigation={navigation} />
 
         <ScrollView>
           <View>
@@ -55,6 +56,12 @@ const Preview = ({ navigation }) => {
               <Text>R235.99 💳</Text>
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
+                onPress={()=>otherParam(
+                  [
+                    ...items,{ foodurl: require('../assets/plate3.png'), id: 11, item_name: 'full chicken', description: 'lorems...' }
+                  ]
+        
+                )}
                   style={{
                     borderRadius: 18,
                     flexDirection: "row",
@@ -71,10 +78,11 @@ const Preview = ({ navigation }) => {
                       color: "white",
                       alignSelf: "center",
                       textAlign: "center",
+                      paddingRight:5,
+                      paddingLeft:5
                     }}
                   >
-                    {" "}
-                    Add to my cart{" "}
+                    Add to my cart
                   </Text>
                   <TouchableOpacity>
                     <Text
@@ -99,9 +107,9 @@ const Preview = ({ navigation }) => {
               You may also like this..
             </Text>
 
-            <Suggested />
+            <Suggested otherParam={otherParam} items={items}/>
 
-            <Hbottom msg={'checkout 2 products'} navigation={navigation}/>
+            <Hbottom msg={'checkout '} navigation={navigation} cartItems={items} SetCart={otherParam}/>
           </View>
         </ScrollView>
       </View>
