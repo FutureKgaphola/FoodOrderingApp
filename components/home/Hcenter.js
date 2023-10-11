@@ -1,11 +1,15 @@
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { styles } from "../../Styles";
 import Chickencard from "./Chickencard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Friescard from "./Friescard";
+import { CartContext } from "../../Global/CartManager";
 
 const Hcenter = (props) => {
-    const{navigation,SetCart,cartItems}=props;
+    const{navigation}=props;
+    const {
+        cartItems,SetCartitems,
+    }=useContext(CartContext);
     const [categories, setCategory] = useState('chicken');
     return (
         <View style={styles.Hcenter}>
@@ -30,7 +34,7 @@ const Hcenter = (props) => {
                 </View>
 
                 {/*categories === "chicken" ? <Chickencard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/> : <Friescard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/>*/}
-                <Chickencard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/> 
+                <Chickencard navigation={navigation} SetCart={SetCartitems} cartItems={cartItems}/> 
             </View>
         </View>
     );

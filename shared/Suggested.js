@@ -1,53 +1,26 @@
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-elements";
+import uuid from 'react-native-uuid';
+import { CartContext } from "../Global/CartManager";
 
-const Suggested = (props) => {
-  const { otherParam,items } = props;
+const Suggested = () => {
+  const {
+    cartItems, SetCartitems,
+  } = useContext(CartContext);
   const [food, setfood] = useState([
     {
-      foodurl: require("../assets/fries1.png"),
-      id: 1,
-      item_name: "full chicken",
-      description: "lorems...",
+      foodurl: require('../assets/fries1.png'), id: uuid.v4(), item_name: 'fries', description: `In publishing and graphic design, Lorem ipsum is a placeholder
+    text commonly used to demonstrate the visual form of a document
+    or a typefacd as a placeholder before final`, price: '55.78'
     },
     {
-      foodurl: require("../assets/fries2.png"),
-      id: 2,
-      item_name: "full chicken",
-      description: "lorems...",
+      foodurl: require('../assets/fries2.png'), id: uuid.v4(), item_name: 'fries', description: `In publishing and graphic design, Lorem ipsum is a placeholder
+    text commonly used to demonstrate the visual form of a document
+    or a typefacd as a placeholder before final`, price: '60.00'
     },
-    {
-      foodurl: require("../assets/fries1.png"),
-      id: 3,
-      item_name: "full chicken",
-      description: "lorems...",
-    },
-    {
-      foodurl: require("../assets/fries2.png"),
-      id: 4,
-      item_name: "full chicken",
-      description: "lorems...",
-    },
-    {
-      foodurl: require("../assets/fries1.png"),
-      id: 5,
-      item_name: "full chicken",
-      description: "lorems...",
-    },
-    {
-      foodurl: require("../assets/fries2.png"),
-      id: 6,
-      item_name: "full chicken",
-      description: "lorems...",
-    },
-    {
-      foodurl: require("../assets/fries1.png"),
-      id: 7,
-      item_name: "full chicken",
-      description: "lorems...",
-    },
+
   ]);
   return (
     <View>
@@ -66,12 +39,12 @@ const Suggested = (props) => {
             <View style={{ flexDirection: "row" }}>
               <Card elevation={7} containerStyle={{ borderRadius: 9 }}>
                 <TouchableOpacity
-                onPress={()=>otherParam(
-                  [
-                    ...items,{ foodurl: require('../assets/plate3.png'), id: 11, item_name: 'full chicken', description: 'lorems...' }
-                  ]
-        
-                )}>
+                  onPress={() => SetCartitems(
+                    [
+                      ...cartItems, item
+                    ]
+
+                  )}>
                   <AntDesign
                     style={{ elevation: 5 }}
                     name="pluscircle"
@@ -80,7 +53,6 @@ const Suggested = (props) => {
                   />
                 </TouchableOpacity>
                 <TouchableOpacity
-                  //onPress={() => navigation.navigate("Preview")}
                 >
                   <Image
                     style={{ width: 100, height: 100, marginTop: 1 }}
@@ -113,7 +85,7 @@ const Suggested = (props) => {
                         alignSelf: "flex-end",
                       }}
                     >
-                      R135.99
+                      R{item.price}
                     </Text>
                   </TouchableOpacity>
                 </View>

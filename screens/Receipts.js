@@ -2,40 +2,24 @@ import { StyleSheet, View } from "react-native";
 import Header from "../shared/Header";
 import ReceiptsGenrator from "../shared/ReceiptsGenrator";
 import Hbottom from "../components/home/Hbottom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../Global/CartManager";
 
 const Receipts = (props) => {
-  const {navigation,cartItems,SetCart}=props;
+  const {navigation}=props;
+  const {
+    cartItems,SetCartitems,
+    receipt, SetReceipt
+}=useContext(CartContext);
 
-  const [recepits, SetReceipts] = useState([
-    {
-      id: 1,
-      itemOncard: ["full chicken", "small fries", "full chicken"],
-      date: "12/06/2023",
-    },
-    {
-      id: 2,
-      itemOncard: ["full chicken", "small fries"],
-      date: "19/03/2023",
-    },
-    {
-      id: 3,
-      itemOncard: [ "small fries"],
-      date: "16/07/2023",
-    },
-    {
-      id: 4,
-      itemOncard: ["full chicken", "small fries", "full chicken"],
-      date: "13/06/2023",
-    },
-  ]);
+  const [recepits, SetReceipts] = useState(receipt);
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
         <Header navigation={navigation} />
 
         <ReceiptsGenrator recepits={recepits} />
-        <Hbottom msg={"back to meals"} navigation={navigation} cartItems={cartItems} SetCart={SetCart}/>
+        <Hbottom msg={"back to meals"} navigation={navigation} cartItems={cartItems} SetCart={SetCartitems}/>
       </View>
     </View>
   );

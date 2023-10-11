@@ -11,9 +11,10 @@ import Welcome from './screens/Welcome';
 import Preview from './screens/Preview';
 import Cart from './screens/Cart';
 import Receipts from './screens/Receipts';
+import { CartProvider, CartContext } from "./Global/CartManager";
 
 export default function App() {
-  
+
   const [fontsLoaded, setfont] = useState(null);
   let customFonts = {
     kanit: require("./assets/fonts/kanit/Kanit-Bold.ttf"),
@@ -35,29 +36,41 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
-        <NavigationContainer> 
-        <Stack.Navigator initialRouteName="Welcome">
-          <Stack.Screen name="Welcome" component={Welcome} options={{title:'',headerShown: false}}/>
-          <Stack.Screen name="Login" component={Login} options={{title:'',headerShown: false}}/>
-          <Stack.Screen name="Home" component={Home} options={{title:'',headerShown: false, headerLeft: ()=> null,
-            headerStyle: {
-                backgroundColor: 'black',
-             }}}/>
-          <Stack.Screen name="Preview" component={Preview} options={{title:'',headerShown: false, headerLeft: ()=> null,
-            headerStyle: {
-                backgroundColor: 'black',
-             }}}/>
-          <Stack.Screen name="Cart" component={Cart} options={{title:'',headerShown: false, headerLeft: ()=> null,
-            headerStyle: {
-                backgroundColor: 'black',
-             }}}/>
-             <Stack.Screen name="Receipts" component={Receipts} options={{title:'',headerShown: false, headerLeft: ()=> null,
-            headerStyle: {
-                backgroundColor: 'black',
-             }}}/>
-        </Stack.Navigator>
+        <CartProvider>
 
-        </NavigationContainer>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Welcome">
+              <Stack.Screen name="Welcome" component={Welcome} options={{ title: '', headerShown: false }} />
+              <Stack.Screen name="Home" component={Home} options={{
+                title: '', headerShown: false, headerLeft: () => null,
+                headerStyle: {
+                  backgroundColor: 'black',
+                }
+              }} />
+              <Stack.Screen name="Preview" component={Preview} options={{
+                title: '', headerShown: false, headerLeft: () => null,
+                headerStyle: {
+                  backgroundColor: 'black',
+                }
+              }} />
+              <Stack.Screen name="Cart" component={Cart} options={{
+                title: '', headerShown: false, headerLeft: () => null,
+                headerStyle: {
+                  backgroundColor: 'black',
+                }
+              }} />
+              <Stack.Screen name="Receipts" component={Receipts} options={{
+                title: '', headerShown: false, headerLeft: () => null,
+                headerStyle: {
+                  backgroundColor: 'black',
+                }
+              }} />
+            </Stack.Navigator>
+
+          </NavigationContainer>
+
+        </CartProvider>
+
       </View>
     </SafeAreaProvider>
   );

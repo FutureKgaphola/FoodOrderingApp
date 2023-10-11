@@ -4,26 +4,20 @@ import {
   View,
 } from "react-native";
 import Hbottom from "../components/home/Hbottom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CartItemsGenrator from "../shared/CartItemsGenrator";
 import Header from "../shared/Header";
+import { CartContext } from "../Global/CartManager";
 
 const Cart = (props) => {
-  const {navigation,cart_Items,Set_Cart}=props;
-    const[cartitems,SetCart]=useState(
-        [
-        { foodurl: require('../assets/fries2.png'), id: 1, item_name: 'Extra hot fries', description: 'lorems...' },
-        { foodurl: require('../assets/fries1.png'), id: 2, item_name: 'Tasty fries', description: 'lorems...' },
-        { foodurl: require('../assets/plate2.png'), id: 3, item_name: 'Full chicken', description: 'lorems...' },
-        { foodurl: require('../assets/plate3.png'), id: 4, item_name: 'Full chicken', description: 'lorems...' }
-        ]
-    );
+  const {navigation}=props;
+  const {cartItems,SetCartitems}=useContext(CartContext);
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
         <Header navigation={navigation}/>
-        <CartItemsGenrator cartitems={cartitems}/>
-          <Hbottom msg={'accept and pay '} navigation={navigation} cartItems={cartitems} SetCart={SetCart}/>
+        <CartItemsGenrator cartitems={cartItems}/>
+          <Hbottom msg={'accept and pay '} navigation={navigation} cartItems={cartItems} SetCart={SetCartitems}/>
       </View>
     </View>
   );

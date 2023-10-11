@@ -12,19 +12,31 @@ import { Card } from "react-native-elements";
 import Suggested from "../shared/Suggested";
 import Hbottom from "../components/home/Hbottom";
 import Header from "../shared/Header";
+import { useContext } from "react";
+import { CartContext } from "../Global/CartManager";
+import uuid from 'react-native-uuid';
 
 const Preview = ({ route, navigation }) => {
-  const { otherParam,items } = route.params;
+
+
+  const {
+    cartItems, SetCartitems,
+    previewName, SetPreviewName,
+    previewPrice, SetPreviewPrice,
+    previewImage, SetPreviewImage,
+    previewDesc, SetPreviewDescription
+  } = useContext(CartContext);
+
   return (
     <View style={styles.parent}>
       <View style={styles.childone}>
-      <Header navigation={navigation} />
+        <Header navigation={navigation} />
 
         <ScrollView>
           <View>
             <Image
               style={{ width: 200, height: 200, alignSelf: "center" }}
-              source={require("../assets/plate2.png")}
+              source={previewImage}
             />
             <Card elevation={7} containerStyle={{ borderRadius: 9 }}>
               <View
@@ -34,7 +46,7 @@ const Preview = ({ route, navigation }) => {
                 }}
               >
                 <Text style={{ fontFamily: "kanit", fontSize: 20 }}>
-                  Tasty Fried chicken
+                  {previewName}
                 </Text>
                 <TouchableOpacity
                   style={{
@@ -49,19 +61,18 @@ const Preview = ({ route, navigation }) => {
               </View>
               <Text style={{ fontFamily: "KantumruyPro" }}>⭐4.9 ratings</Text>
               <Text style={{ fontFamily: "KantumruyPro" }}>
-                In publishing and graphic design, Lorem ipsum is a placeholder
-                text commonly used to demonstrate the visual form of a document
-                or a typefacd as a placeholder before final co
+                {previewDesc}
               </Text>
-              <Text>R235.99 💳</Text>
+              <Text>R{previewPrice} 💳</Text>
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
-                onPress={()=>otherParam(
-                  [
-                    ...items,{ foodurl: require('../assets/plate3.png'), id: 11, item_name: 'full chicken', description: 'lorems...' }
-                  ]
-        
-                )}
+                  onPress={() => SetCartitems(
+                    [
+
+                      ...cartItems, { foodurl: previewImage, id: uuid.v4(), item_name: previewName, description: previewDesc, price: previewPrice }
+                    ]
+
+                  )}
                   style={{
                     borderRadius: 18,
                     flexDirection: "row",
@@ -78,8 +89,8 @@ const Preview = ({ route, navigation }) => {
                       color: "white",
                       alignSelf: "center",
                       textAlign: "center",
-                      paddingRight:5,
-                      paddingLeft:5
+                      paddingRight: 5,
+                      paddingLeft: 5
                     }}
                   >
                     Add to my cart
@@ -96,7 +107,7 @@ const Preview = ({ route, navigation }) => {
                         alignSelf: "flex-end",
                       }}
                     >
-                      R135.99
+                      R{previewPrice}
                     </Text>
                   </TouchableOpacity>
                 </TouchableOpacity>
@@ -107,9 +118,10 @@ const Preview = ({ route, navigation }) => {
               You may also like this..
             </Text>
 
-            <Suggested otherParam={otherParam} items={items}/>
+            <Suggested/>
 
-            <Hbottom msg={'checkout '} navigation={navigation} cartItems={items} SetCart={otherParam}/>
+
+            <Hbottom msg={'checkout '} navigation={navigation} cartItems={cartItems} SetCart={SetCartitems} />
           </View>
         </ScrollView>
       </View>

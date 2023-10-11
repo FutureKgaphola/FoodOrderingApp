@@ -1,8 +1,16 @@
 import { Feather } from "@expo/vector-icons";
+import { useContext } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-elements";
+import { CartContext } from "../Global/CartManager";
 
 const CartItemsGenrator = ({ cartitems }) => {
+  const {
+    cartItems,SetCartitems,
+}=useContext(CartContext);
+  const Removeitem=(id)=>{
+    SetCartitems(cartItems.filter((item)=>item.id!==id));
+  }
   return (
     <FlatList
       keyExtractor={(item) => item.id}
@@ -34,7 +42,7 @@ const CartItemsGenrator = ({ cartitems }) => {
           </View>
           <Text style={{ fontFamily: "KantumruyPro" }}>⭐4.9 ratings</Text>
           <Text style={{ fontFamily: "KantumruyPro" }}>{item.description}</Text>
-          <Text>R235.99 💳</Text>
+          <Text>R{item.price} 💳</Text>
           <View style={{ flexDirection: "row" }}>
             <View
               style={{
@@ -47,7 +55,7 @@ const CartItemsGenrator = ({ cartitems }) => {
                 justifyContent: "flex-end",
               }}
             >
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>Removeitem(item.id)}>
                 <Feather
                   style={{
                     alignSelf: "center",
@@ -58,34 +66,8 @@ const CartItemsGenrator = ({ cartitems }) => {
                   color="white"
                 />
               </TouchableOpacity>
-
-              <Text
-                style={{
-                  fontFamily: "KantumruyPro",
-                  color: "white",
-                  alignSelf: "center",
-                  textAlign: "center",
-                  marginLeft: 6,
-                  marginRight: 6,
-                }}
-              >
-                1
-              </Text>
-              <TouchableOpacity>
-                <Feather
-                  style={{
-                    borderRadius: 15,
-
-                    backgroundColor: "white",
-                    padding: 2,
-                    alignSelf: "flex-end",
-                  }}
-                  name="plus-circle"
-                  size={24}
-                  color="black"
-                />
-              </TouchableOpacity>
             </View>
+
           </View>
         </Card>
       )}

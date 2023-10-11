@@ -3,10 +3,15 @@ import { Ionicons } from '@expo/vector-icons';
 import { styles } from "../../Styles";
 import Tasty from "./Tasty";
 import VisitCart from "../../shared/VisitCart";
+import { useContext } from "react";
+import { CartContext } from "../../Global/CartManager";
 
 
 const Htop = (props) => {
-    const{navigation,cartItems,SetCart}=props;
+    const{navigation}=props;
+    const {
+        cartItems,SetCartitems,
+    }=useContext(CartContext);
     
     return (
         <View style={styles.Htop}>
@@ -25,10 +30,10 @@ const Htop = (props) => {
                     flexDirection: "row", justifyContent: "space-between", marginTop: 10
                 }}>
                     <Text style={{ fontFamily: 'KaushanScript', fontSize: 35, color: 'white' }}>Rosted</Text>
-                    <VisitCart navigation={navigation} cartItems={cartItems} SetCart={SetCart}/>
+                    <VisitCart navigation={navigation} cartItems={cartItems} SetCart={SetCartitems}/>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: "center", marginBottom: 5 }}>
-                    <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+                    <TouchableOpacity onPress={()=>navigation.navigate("Welcome")}>
                         <Ionicons style={{ backgroundColor: 'white', borderRadius: 5 }} name="md-exit-outline" size={30} color="black" />
 
                     </TouchableOpacity>

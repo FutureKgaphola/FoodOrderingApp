@@ -5,10 +5,7 @@ import { LogBox } from 'react-native';
 const VisitCart = (props) => {
   const {navigation,cartItems,SetCart}=props;
     return ( 
-        <TouchableOpacity onPress={()=>navigation.navigate('Cart',{
-          cart_Items: cartItems,
-          Set_Cart: SetCart,
-        })} >
+        <TouchableOpacity onPress={()=>navigation.navigate('Cart')} >
               <View
                 style={{
                   flexDirection: "row",
