@@ -7,11 +7,13 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/Login';
 import Home from './screens/Home';
-import Welcome from './screens/Welcome';
 import Preview from './screens/Preview';
 import Cart from './screens/Cart';
 import Receipts from './screens/Receipts';
 import { CartProvider, CartContext } from "./Global/CartManager";
+import Forgotpassword from "./screens/Forgotpassword";
+import Profile from "./screens/Profile";
+import Register from "./screens/Register";
 
 export default function App() {
 
@@ -39,8 +41,11 @@ export default function App() {
         <CartProvider>
 
           <NavigationContainer>
-            <Stack.Navigator initialRouteName="Welcome">
-              <Stack.Screen name="Welcome" component={Welcome} options={{ title: '', headerShown: false }} />
+            <Stack.Navigator initialRouteName="Login">
+              <Stack.Screen name="Login" component={Login} options={{ title: '', headerShown: false }} /> 
+              <Stack.Screen name="Profile" component={Profile} options={{ title: '', headerShown: false }} />
+              <Stack.Screen name="Register" component={Register} options={{ title: '', headerShown: false }} />
+              <Stack.Screen name="Forgotpassword" component={Forgotpassword} options={{ title: '', headerShown: false }} />
               <Stack.Screen name="Home" component={Home} options={{
                 title: '', headerShown: false, headerLeft: () => null,
                 headerStyle: {

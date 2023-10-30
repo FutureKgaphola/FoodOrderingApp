@@ -9,6 +9,12 @@ const CartItemsGenrator = ({ cartitems }) => {
     cartItems,SetCartitems,
 }=useContext(CartContext);
   const Removeitem=(id)=>{
+
+    cartItems.forEach(element => {
+      if(element.id==id){
+        element.quantity=1;
+      }
+  });
     SetCartitems(cartItems.filter((item)=>item.id!==id));
   }
   return (
@@ -36,13 +42,15 @@ const CartItemsGenrator = ({ cartitems }) => {
             >
               <Image
                 style={{ width: 40, height: 40, marginTop: 1 }}
-                source={item.foodurl}
+                source={{uri:item.foodurl}}
               />
             </TouchableOpacity>
           </View>
           <Text style={{ fontFamily: "KantumruyPro" }}>⭐4.9 ratings</Text>
           <Text style={{ fontFamily: "KantumruyPro" }}>{item.description}</Text>
           <Text>R{item.price} 💳</Text>
+          
+          <Text>Quantity : {item.quantity==undefined ?  "1" : item.quantity}</Text>
           <View style={{ flexDirection: "row" }}>
             <View
               style={{

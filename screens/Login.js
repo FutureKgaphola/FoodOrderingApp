@@ -14,8 +14,6 @@ const Login = ({navigation}) => {
                     <L_top/>
   
                     <Lbottom navigation={navigation}/>
-                {/*<Text style={{ fontFamily: 'KaushanScript', fontSize: 60, color: 'white' }}>Rosted</Text>
-                */}
             </ImageBackground>
         </View>
         </TouchableWithoutFeedback>

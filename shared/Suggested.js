@@ -4,24 +4,31 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-elements";
 import uuid from 'react-native-uuid';
 import { CartContext } from "../Global/CartManager";
+import { useEffect } from "react";
+import { db } from "../Connection/dbconfig";
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 
 const Suggested = () => {
   const {
     cartItems, SetCartitems,
   } = useContext(CartContext);
-  const [food, setfood] = useState([
-    {
-      foodurl: require('../assets/fries1.png'), id: uuid.v4(), item_name: 'fries', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-    text commonly used to demonstrate the visual form of a document
-    or a typefacd as a placeholder before final`, price: '55.78'
-    },
-    {
-      foodurl: require('../assets/fries2.png'), id: uuid.v4(), item_name: 'fries', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-    text commonly used to demonstrate the visual form of a document
-    or a typefacd as a placeholder before final`, price: '60.00'
-    },
+  const [food, setfood] = useState([]);
 
-  ]);
+    const q = query(collection(db, "Food"), where("category", "==", "suggestions"));
+    useEffect(() => {
+      onSnapshot(q,(querySnapshot) => {
+          const Store = [];
+          querySnapshot.forEach((doc) => {
+            Store.push({
+              id: doc.id,
+              ...doc.data(),
+            });
+          });
+          setfood(Store);
+        });
+      
+  
+    }, []);
   return (
     <View>
       {food.length > 0 ? (
@@ -56,7 +63,7 @@ const Suggested = () => {
                 >
                   <Image
                     style={{ width: 100, height: 100, marginTop: 1 }}
-                    source={item.foodurl}
+                    source={{uri:item.foodurl}}
                   />
                 </TouchableOpacity>
                 <Text style={{ fontFamily: "KaushanScript", fontSize: 16 }}>

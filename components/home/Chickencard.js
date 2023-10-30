@@ -1,9 +1,12 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from '../../Global/CartManager';
 import uuid from 'react-native-uuid';
+import { db } from "../../Connection/dbconfig";
+import { collection,onSnapshot,query, where } from "firebase/firestore";
+
 const Chickencard = (props) => {
 
     const {
@@ -14,31 +17,24 @@ const Chickencard = (props) => {
     } = useContext(CartContext);
 
     const { navigation, SetCart, cartItems } = props;
+    const [food, setfood] = useState([]);
 
-    const [food, setfood] = useState([
-        { foodurl: require('../../assets/plate3.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'123.22' },
-        { foodurl: require('../../assets/plate2.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'423.66' },
-        { foodurl: require('../../assets/plate1.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'123.33' },
-        { foodurl: require('../../assets/plate3.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'123.66' },
-        { foodurl: require('../../assets/plate2.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'623.00' },
-        { foodurl: require('../../assets/plate1.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'723.66' },
-        { foodurl: require('../../assets/plate3.png'), id: uuid.v4(), item_name: 'full chicken', description: `In publishing and graphic design, Lorem ipsum is a placeholder
-        text commonly used to demonstrate the visual form of a document
-        or a typefacd as a placeholder before final`,price:'523.36' }
-    ]);
+  const q = query(collection(db, "Food"), where("category", "==", "chicken"));
+  useEffect(() => {
+    onSnapshot(q,(querySnapshot) => {
+        const Store = [];
+        querySnapshot.forEach((doc) => {
+          Store.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setfood(Store);
+      });
+    
 
+  }, []);
+    
     const previewitem=(item)=>{
     SetPreviewName(item.item_name);
     SetPreviewPrice(item.price);
@@ -46,6 +42,27 @@ const Chickencard = (props) => {
     SetPreviewDescription(item.description);
     navigation.navigate('Preview');
 
+    }
+
+    const chechIfExist=(item,productName)=>{
+        var found=false;
+        cartItems.forEach(element => {
+            if(element.item_name==productName){
+                if(element.quantity===NaN || element.quantity==undefined){
+                    element.quantity=0;
+                    element.quantity++;
+                }else{
+                    element.quantity++;
+                }
+                found=true;
+            }
+        });
+
+        if(found !==true){
+            SetCart(
+                [...cartItems, item]
+            )
+        }
     }
     return (
         <View>
@@ -65,14 +82,12 @@ const Chickencard = (props) => {
                         <View style={{ flexDirection: 'row' }}>
                             <Card elevation={7}
                                 containerStyle={{ borderRadius: 9 }}>
-                                <TouchableOpacity onPress={() => SetCart(
-                                    [...cartItems, item]
-                                )}>
+                                <TouchableOpacity onPress={() => chechIfExist(item,item.item_name)}>
                                     <AntDesign style={{ elevation: 5 }} name="pluscircle" size={24} color="black" />
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => previewitem(item)}>
                                     <Image style={{ width: 105, height: 105, marginTop: 1 }}
-                                        source={item.foodurl}
+                                        source={{uri:item.foodurl}}
                                     />
                                 </TouchableOpacity>
                                 <Text style={{ fontFamily: 'KaushanScript', fontSize: 16 }}>{item.item_name}</Text>

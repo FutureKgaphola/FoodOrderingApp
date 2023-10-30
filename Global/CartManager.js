@@ -8,6 +8,7 @@ const CartProvider = ({ children }) => {
     const [previewPrice, SetPreviewPrice] = useState(null);
     const [previewImage, SetPreviewImage] = useState(null);
     const [previewDesc, SetPreviewDescription] = useState(null);
+    const [key, SetKey]=useState(null);
     const [receipt, SetReceipt] = useState([]);
     return (
         <CartContext.Provider value={{
@@ -16,7 +17,8 @@ const CartProvider = ({ children }) => {
             previewPrice, SetPreviewPrice,
             previewImage, SetPreviewImage,
             previewDesc, SetPreviewDescription,
-            receipt, SetReceipt
+            receipt, SetReceipt,
+            key, SetKey
         }}>
             {children}
         </CartContext.Provider>

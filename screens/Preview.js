@@ -35,8 +35,8 @@ const Preview = ({ route, navigation }) => {
         <ScrollView>
           <View>
             <Image
-              style={{ width: 200, height: 200, alignSelf: "center" }}
-              source={previewImage}
+              style={{ width: 200, height: 200, alignSelf: "center",objectFit:"contain" }}
+              source={{uri:previewImage}}
             />
             <Card elevation={7} containerStyle={{ borderRadius: 9 }}>
               <View
@@ -119,7 +119,6 @@ const Preview = ({ route, navigation }) => {
             </Text>
 
             <Suggested/>
-
 
             <Hbottom msg={'checkout '} navigation={navigation} cartItems={cartItems} SetCart={SetCartitems} />
           </View>

@@ -1,18 +1,28 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "../../Connection/dbconfig";
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 const Friescard = (props) => {
     const{navigation,SetCart,cartItems}=props;
-    const [food, setfood] = useState([
-        { foodurl: require('../../assets/fries1.png'), id: 1, item_name: 'full chicken', description: 'lorems...' },
-        { foodurl: require('../../assets/fries2.png'), id: 2, item_name: 'full chicken', description: 'lorems...' },
-        { foodurl: require('../../assets/fries1.png'), id: 3, item_name: 'full chicken', description: 'lorems...' },
-        { foodurl: require('../../assets/fries2.png'), id: 4, item_name: 'full chicken', description: 'lorems...' },
-        { foodurl: require('../../assets/fries1.png'), id: 5, item_name: 'full chicken', description: 'lorems...' },
-        { foodurl: require('../../assets/fries2.png'), id: 6, item_name: 'full chicken', description: 'lorems...' },
-        { foodurl: require('../../assets/fries1.png'), id: 7, item_name: 'full chicken', description: 'lorems...' }
-    ]);
+    const [food, setfood] = useState([]);
+
+    const q = query(collection(db, "Food"), where("category", "==", "suggestions"));
+    useEffect(() => {
+      onSnapshot(q,(querySnapshot) => {
+          const Store = [];
+          querySnapshot.forEach((doc) => {
+            Store.push({
+              id: doc.id,
+              ...doc.data(),
+            });
+          });
+          setfood(Store);
+        });
+      
+  
+    }, []);
     return (
         <View>
             {food.length>0 ?

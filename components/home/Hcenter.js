@@ -2,7 +2,6 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { styles } from "../../Styles";
 import Chickencard from "./Chickencard";
 import { useContext, useState } from "react";
-import Friescard from "./Friescard";
 import { CartContext } from "../../Global/CartManager";
 
 const Hcenter = (props) => {
@@ -14,26 +13,15 @@ const Hcenter = (props) => {
     return (
         <View style={styles.Hcenter}>
             <View>
-                <Text style={{ fontFamily: 'KaushanScript', fontSize: 25 }}>categories</Text>
+                <Text style={{ fontFamily: 'KaushanScript', fontSize: 25 }}>...</Text>
                 <View style={local.categories}>
                     <TouchableOpacity onPress={() => setCategory('chicken')} style={styles.btn}>
                         <View style={local.btn}>
                             <Text style={{ fontFamily: 'KaushanScript', color: 'black', fontSize: 20, padding: 1 }}>🍗 chicken </Text>
                         </View>
 
-                    </TouchableOpacity>
-
-                    {/*
-                    <TouchableOpacity onPress={() => setCategory('fries')} style={styles.btn}>
-                        <View style={local.btn}>
-                            <Text style={{ fontFamily: 'KaushanScript', color: 'black', fontSize: 20, padding: 1 }}>🍟 fries </Text>
-                        </View>
-
-                    </TouchableOpacity>
-                    */}
+                    </TouchableOpacity>                   
                 </View>
-
-                {/*categories === "chicken" ? <Chickencard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/> : <Friescard navigation={navigation} SetCart={SetCart} cartItems={cartItems}/>*/}
                 <Chickencard navigation={navigation} SetCart={SetCartitems} cartItems={cartItems}/> 
             </View>
         </View>
