@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { styles } from "../../Styles";
@@ -6,6 +6,8 @@ import Tasty from "./Tasty";
 import VisitCart from "../../shared/VisitCart";
 import { useContext } from "react";
 import { CartContext } from "../../Global/CartManager";
+import { signOut } from "firebase/auth";
+import { auth } from "../../Connection/dbconfig";
 
 
 const Htop = (props) => {
@@ -34,7 +36,22 @@ const Htop = (props) => {
                     <VisitCart navigation={navigation} cartItems={cartItems} SetCart={SetCartitems}/>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: "center", marginBottom: 5,gap:5 }}>
-                    <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+                    <TouchableOpacity onPress={()=>{
+                        Alert.alert('Sigout','You are about to sign out',[
+                            {
+                              text:'leave',
+                              onPress:()=>{
+                              try {
+                                signOut(auth).then(()=>{
+                                  navigation.navigate("Login");
+                                }).catch(err=>{console.log(err)})
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            }},
+                            {text:'stay',onPress:()=>{}}
+                          ]);
+                    }}>
                         <Ionicons style={{ backgroundColor: 'white', borderRadius: 5 }} name="md-exit-outline" size={30} color="black" />
 
                     </TouchableOpacity> 

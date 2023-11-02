@@ -1,5 +1,8 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { auth } from "../Connection/dbconfig";
+import { signOut } from "firebase/auth";
+import { Alert } from "react-native";
 const Header = (props) => {
   const { navigation } = props;
   return (
@@ -48,7 +51,23 @@ const Header = (props) => {
               color="black"
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <TouchableOpacity onPress={() => 
+          {
+            Alert.alert('Sigout','You are about to sign out',[
+              {
+                text:'leave',
+                onPress:()=>{
+                try {
+                  signOut(auth).then(()=>{
+                    navigation.navigate("Login");
+                  }).catch(err=>{console.log(err)})
+                } catch (error) {
+                  console.log(error);
+                }
+              }},
+              {text:'stay',onPress:()=>{}}
+            ]);
+          }}>
             <Ionicons
               style={{ backgroundColor: "white", borderRadius: 5 }}
               name="md-exit-outline"

@@ -1,16 +1,17 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign,Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-elements";
-import uuid from 'react-native-uuid';
 import { CartContext } from "../Global/CartManager";
 import { useEffect } from "react";
 import { db } from "../Connection/dbconfig";
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
+import { deleteObject, getStorage, ref } from "firebase/storage";
+import { Alert } from "react-native";
 
 const Suggested = () => {
   const {
-    cartItems, SetCartitems,
+    cartItems, SetCartitems,membership
   } = useContext(CartContext);
   const [food, setfood] = useState([]);
 
@@ -29,11 +30,33 @@ const Suggested = () => {
       
   
     }, []);
+
+    const deleteMeal = (id, filename) => {
+      const storage = getStorage();
+  
+      const desertRef = ref(storage, filename);
+  
+      deleteObject(desertRef)
+        .then(() => {
+          deleteDoc(doc(db, "Food", id))
+            .then(() => {
+              Alert.alert("Notification", "Deleted a meal ?");
+            })
+            .catch((err) => {
+              Alert.alert("Error", String(err));
+            });
+        })
+        .catch((error) => {
+          Alert.alert("Error", String(error));
+        });
+    };
+
   return (
     <View>
       {food.length > 0 ? (
         <FlatList
           horizontal
+          showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           data={food}
           scrollEnabled
@@ -95,7 +118,16 @@ const Suggested = () => {
                       R{item.price}
                     </Text>
                   </TouchableOpacity>
+                  
                 </View>
+                {membership.trim().toLowerCase() == "administrator" ? (
+                  <TouchableOpacity
+                    style={{ marginTop: 5 }}
+                    onPress={() => deleteMeal(item.id, item.fileName)}
+                  >
+                    <Ionicons name="trash-bin-sharp" size={24} color="black" />
+                  </TouchableOpacity>
+                ) : null}
               </Card>
             </View>
           )}

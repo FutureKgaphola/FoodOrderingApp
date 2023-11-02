@@ -26,7 +26,7 @@ const CartItemsGenrator = ({ cartitems }) => {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-between", 
             }}
           >
             <Text style={{ fontFamily: "kanit", fontSize: 20 }}>

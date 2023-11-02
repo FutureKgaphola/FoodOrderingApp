@@ -28,7 +28,6 @@ const Register = ({ navigation }) => {
         let data = {
           Username: Username,
           memberDate:(new Date().toLocaleDateString()).toString(),
-          address:[],
           Name:Name.trim(),
           Phone:Phone,
           membership:'customer'
